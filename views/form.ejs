@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body style=" padding: 0;
+margin: 0;
+justify-content: center;
+background: url('../img/main.jpg') center;
+background-color: rgba(0, 17, 51, 0.9);
+background-blend-mode:overlay ;">
+
+   <div style="margin-top: 20px; display: flex; justify-content: center;">
+    <div class="form" >
+      <form action="/add-book" method="post" class="Formulaire">
+        <h3>Ajouter un livre</h3>
+        <label for="Titre">Titre du livre</label>
+        <input type="text" name="Titre" placeholder="Titre" required style="padding: 10px; width: 300px;">
+        <label for="Titre">Auteur</label>
+        <input type="text"name="auteur" placeholder="Auteur" required style="padding: 10px; width: 300px;"> 
+        <label for="Titre">Annee</label>
+        <input type="date" name="Annee" style="padding: 10px; width: 300px;" >
+        <br> 
+        <label for="">Choisissez une couverture du livre</label>
+        <img src="img/IMG_1390.JPG" alt="">
+        <div>        
+          <input type="submit" value="Envoyer" style="background-color:  #000e29; color: white; cursor: pointer;" class="btn_input">
+          <input type="reset" value="Rejeter" style=" background-color:  rgb(81, 37, 37); color: white; cursor: pointer;" class="btn_input">
+        </div>
+       <br>
+      </form>
+    </div>
+   </div>
+
+
+</body>
+</html>
