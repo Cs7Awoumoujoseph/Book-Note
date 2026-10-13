@@ -4,14 +4,17 @@ import pg from "pg" ;
 
 
 const db = new pg.Client({
-    user : "postgres" ,
-    host : "localhost" ,
-    database : "book_note" ,
-    password : "onana44" ,
-    port : 5432 ,
-  });
+    user: process.env.DB_USER || "postgres",
+    host: process.env.DB_HOST || "localhost",
+    database: process.env.DB_NAME || "book_note",
+    password: process.env.DB_PASSWORD,
+    port: Number(process.env.DB_PORT || 5432),
+});
 
-  db.connect() ;
+db.connect().catch((error) => {
+    console.error("Connexion PostgreSQL impossible. Vérifiez les variables DB_*.", error.message);
+    process.exit(1);
+});
 
 const app = express();
 const port = 3000;
