@@ -75,30 +75,51 @@ Configurez ensuite PostgreSQL et les variables d'environnement nécessaires avan
 
 ## Configuration de la base de données
 
-Le code actuel configure la connexion PostgreSQL directement dans `index.js`. **Avant toute utilisation, remplacez cette configuration par des variables d'environnement et changez tout mot de passe qui aurait été publié dans le dépôt.** Ne stockez jamais de secrets dans le code source.
+La connexion PostgreSQL lit désormais ses paramètres depuis des variables d'environnement. Aucun mot de passe n'est stocké dans le code courant.
 
-Exemple de variables à définir dans votre environnement :
+Variables requises :
 
-```text
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=book_note
-DB_USER=postgres
-DB_PASSWORD=votre_mot_de_passe
-PORT=3000
+| Variable | Valeur indicative |
+|---|---|
+| `DB_HOST` | `localhost` |
+| `DB_PORT` | `5432` |
+| `DB_NAME` | `book_note` |
+| `DB_USER` | utilisateur PostgreSQL local |
+| `DB_PASSWORD` | mot de passe local à définir hors de Git |
+
+Sous Linux/macOS, définissez les variables dans le terminal avant le lancement :
+
+```bash
+export DB_HOST=localhost
+export DB_PORT=5432
+export DB_NAME=book_note
+export DB_USER=postgres
+export DB_PASSWORD='votre_mot_de_passe_local'
+node index.js
 ```
 
-Le code doit être adapté pour lire ces variables (par exemple avec `process.env`) avant que cette configuration puisse être utilisée telle quelle.
+Sous Windows PowerShell :
+
+```powershell
+$env:DB_HOST = "localhost"
+$env:DB_PORT = "5432"
+$env:DB_NAME = "book_note"
+$env:DB_USER = "postgres"
+$env:DB_PASSWORD = "votre_mot_de_passe_local"
+node index.js
+```
+
+**Important :** une ancienne révision Git contenait un mot de passe codé en dur. Si ce mot de passe correspond à un compte réel, changez-le immédiatement dans PostgreSQL. Le changement du code actuel ne supprime pas cette ancienne valeur de l'historique Git.
 
 ## Lancement
 
-Une fois la base de données créée et la configuration de connexion adaptée :
+Après avoir créé la base et la table, défini les variables d'environnement et installé les dépendances :
 
 ```bash
 node index.js
 ```
 
-Le serveur écoute actuellement sur le port `3000`. Ouvrez ensuite [http://localhost:3000](http://localhost:3000).
+Le serveur écoute sur le port `3000`. Ouvrez ensuite [http://localhost:3000](http://localhost:3000).
 
 ## Routes principales
 
